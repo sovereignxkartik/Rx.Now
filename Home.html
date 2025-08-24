@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RX.NOW - Care That Clicks</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/NGHcYCcR/2.png">    
+    <!-- Tailwind CSS for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc; /* A light gray for the body background */
+            overflow-x: hidden; /* Prevents horizontal scrolling on mobile */
+        }
+        /* Custom CSS for a subtle fade-in animation on sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards cubic-bezier(0.6, 0.2, 0.1, 1);
+        }
+        /* Defines the fadeIn keyframe animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Apply animation delays to stagger the appearance of elements */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        /* A custom pulse animation for the button */
+        @keyframes pulse-once {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .animate-pulse-once {
+            animation: pulse-once 1.5s ease-in-out;
+        }
+
+        /* Countdown timer digit styling and flip animation */
+        .countdown-digit-container {
+            position: relative;
+            width: 70px;
+            height: 90px;
+            perspective: 500px;
+        }
+
+        .countdown-digit-top,
+        .countdown-digit-bottom,
+        .countdown-digit-top-half,
+        .countdown-digit-bottom-half {
+            position: absolute;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .countdown-digit-top-half,
+        .countdown-digit-bottom-half {
+            height: 45px;
+            background-color: #374151; /* Dark gray */
+            border-radius: 8px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .countdown-digit-top-half {
+            top: 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .countdown-digit-bottom-half {
+            top: 45px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .countdown-digit-top {
+            top: 0;
+            height: 50%;
+            background-color: #4B5563; /* Lighter gray */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .countdown-digit-bottom {
+            top: 50%;
+            height: 50%;
+            background-color: #374151; /* Dark gray */
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .flip-up {
+            transform-origin: bottom center;
+            animation: flip-up-anim 0.8s forwards;
+        }
+
+        @keyframes flip-up-anim {
+            from {
+                transform: rotateX(0deg);
+            }
+            to {
+                transform: rotateX(-90deg);
+            }
+        }
+
+        /* Styles for the slider section */
+        .slider-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .slider-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+        .slider-item {
+            flex: 0 0 100%; /* Each item takes up the full width */
+            scroll-snap-align: center;
+        }
+        @media (min-width: 640px) {
+            .slider-item {
+                flex: 0 0 50%; /* On small screens and up, two items per view */
+            }
+        }
+        @media (min-width: 1024px) {
+            .slider-item {
+                flex: 0 0 33.333%; /* On large screens and up, three items per view */
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-white py-4 px-6 md:px-12" style="box-shadow: 1px 3px 20px rgb(253, 64, 64); width:90%; margin:0 auto; margin-top:40px; border-radius:0px; border-top-left-radius:50px; border-top-right-radius:50px;  ">
+        <nav class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2" style="margin: 0 auto;">
+                <!-- RX.NOW Logo with a fallback image -->
+                <img src="https://i.postimg.cc/NGHcYCcR/2.png" alt="RX.NOW Logo" class="h-10 rounded-lg">
+                <span class="text-xl font-bold text-gray-800">Rx.Now</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Countdown Timer Section -->
+    <section class="bg-red-600 py-6 px-4 md:px-12 text-center text-white" style="width: 90%; margin: 0 auto; border-bottom-left-radius:50px; border-bottom-right-radius:50px;  margin-bottom: 1%; box-shadow: 1px 3px 20px rgb(0, 0, 0); ">
+        <div class="container mx-auto">
+            <h3 class="text-xl md:text-2xl font-semibold mb-4">Launching on ...</h3>
+            <div class="flex justify-center items-center space-x-4 md:space-x-8">
+                <!-- Days Countdown -->
+                <div class="flex flex-col items-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="days">00</div>
+                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Days</span>
+                </div>
+                <div class="text-3xl md:text-4xl lg:text-5xl font-bold">:</div>
+                <!-- Hours Countdown -->
+                <div class="flex flex-col items-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="hours">00</div>
+                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Hours</span>
+                </div>
+                <div class="text-3xl md:text-4xl lg:text-5xl font-bold">:</div>
+                <!-- Minutes Countdown -->
+                <div class="flex flex-col items-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="minutes">00</div>
+                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Minutes</span>
+                </div>
+                <div class="text-3xl md:text-4xl lg:text-5xl font-bold">:</div>
+                <!-- Seconds Countdown -->
+                <div class="flex flex-col items-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="seconds">00</div>
+                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <main class="min-h-screen flex items-center justify-center text-center bg-white-50 overflow-hidden relative">
+        <div class="container mx-auto px-6 py-12 md:py-24 max-w-4xl">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight fade-in-section delay-100">
+                Care That Clicks
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto fade-in-section delay-200">
+                India's most accessible and complete online hospital platform, bringing doctors, lab tests, and medicines right to your smartphone.
+            </p>
+            <div class="fade-in-section delay-300">
+                <a href="#services" class="inline-block px-8 py-4 bg-red-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-red-700 transition-transform duration-300 transform hover:scale-105">
+                    Explore Our Services
+                </a>
+            </div>
+        </div>
+        <!-- Simple animated background circles -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute w-64 h-64 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse top-1/4 left-1/4"></div>
+            <div class="absolute w-64 h-64 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-500 bottom-1/4 right-1/4"></div>
+        </div>
+    </main>
+    
+    <!-- Slider Section with Images -->
+    <section class="py-16 md:py-24 bg-white relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8 fade-in-section delay-100">
+                A Seamless Experience
+            </h2>
+            <div class="relative">
+                <div class="flex space-x-8 px-4 overflow-x-auto slider-container py-4" id="slider-content">
+                    <!-- Slider Card 1 -->
+                    <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-200 slider-item flex-shrink-0 w-80">
+                        <img src="https://i.postimg.cc/DzRwpy9g/Untitled-design-2.png" alt="AI Assistant" class="rounded-2xl mb-4 w-full h-auto">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">AI-Powered Assistant</h3>
+                        <p class="text-gray-600">Our intelligent bot helps with documentation and provides instant guidance.</p>
+                    </div>
+                    <!-- Slider Card 2 -->
+                    <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-300 slider-item flex-shrink-0 w-80">
+                        <img src="https://i.postimg.cc/ZqQWkLd6/Untitled-design-1.png" alt="Online Consultations" class="rounded-2xl mb-4 w-full h-auto">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Online Consultations</h3>
+                        <p class="text-gray-600">Connect with licensed doctors 24/7 via video, audio, or chat from anywhere.</p>
+                    </div>
+                    <!-- Slider Card 3 -->
+                    <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-400 slider-item flex-shrink-0 w-80">
+                        <img src="https://i.postimg.cc/QtrrW9LR/Untitled-design-3.png" alt="Medicine Delivery" class="rounded-2xl mb-4 w-full h-auto">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Doorstep Medicine Delivery</h3>
+                        <p class="text-gray-600">Receive digital prescriptions and have your medicines delivered to your home.</p>
+                    </div>
+                    <!-- Slider Card 4 -->
+                    <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-500 slider-item flex-shrink-0 w-80">
+                        <img src="https://i.postimg.cc/05nqbyVB/Untitled-design-4.png" alt="Health Records" class="rounded-2xl mb-4 w-full h-auto">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Digital Health Records</h3>
+                        <p class="text-gray-600">Access and manage all your medical history and reports securely in one place.</p>
+                    </div>
+                </div>
+                <!-- Navigation Arrows -->
+                <button id="prev-arrow" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10 hidden md:block">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button id="next-arrow" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10 hidden md:block">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12 fade-in-section delay-100">
+                The Complete Healthcare Solution
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Service Card 1: Consult Doctors -->
+                <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-200 hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                        <!-- Inline SVG for Doctor Icon -->
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 100 5.292M12 14v4M12 21h-2M12 10v4M12 21h2m-6-10H6M6 14h2M18 10h-2M18 14h2"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Consult Doctors 24/7</h3>
+                    <p class="text-gray-600">Get instant video, audio, or chat consultations with licensed doctors, anytime, anywhere.</p>
+                </div>
+
+                <!-- Service Card 2: Lab Tests -->
+                <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-300 hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                        <!-- Inline SVG for Lab Icon -->
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9v2m0 4v2m0-6V5"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Book Lab Tests</h3>
+                    <p class="text-gray-600">Schedule lab tests with convenient home sample collection and receive digital reports.</p>
+                </div>
+
+                <!-- Service Card 3: Medicine Delivery -->
+                <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-400 hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                        <!-- Inline SVG for Medicine Icon -->
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Order Medicines</h3>
+                    <p class="text-gray-600">Get your digital prescriptions filled and medicines delivered right to your doorstep.</p>
+                </div>
+
+                <!-- Service Card 4: Health Records -->
+                <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-500 hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                        <!-- Inline SVG for Records Icon -->
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5h-2m-2-5v-4m-2-4h6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Digital Health Records</h3>
+                    <p class="text-gray-600">Access your complete medical history and reports securely, anytime, anywhere.</p>
+                </div>
+
+                <!-- Service Card 5: AI Insights -->
+                <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-600 hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                        <!-- Inline SVG for AI Icon -->
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20v-6a2 2 0 012-2h2a2 2 0 012 2v6m0-6h3a2 2 0 002-2V7a2 2 0 00-2-2h-3V3m0 0a2 2 0 00-2-2h-2a2 2 0 00-2 2v2m0 0H7a2 2 0 00-2 2v10a2 2 0 002 2h3"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">AI-Powered Insights</h3>
+                    <p class="text-gray-600">Use our intelligent bot to get instant guidance and early health insights based on your symptoms.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution Section -->
+    <section class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Problem Description -->
+                <div class="fade-in-section delay-100">
+                    <span class="inline-block bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase">The Problem</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-snug">
+                        India's healthcare system is burdened and inaccessible.
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-6">
+                        Millions face challenges like long queues, lack of nearby doctors, and fragmented care. RX.NOW is here to bridge that gap with a new-age digital hospital.
+                    </p>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="inline-block w-6 h-6 mr-2">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            Long waits and travel for basic care.
+                        </li>
+                        <li class="flex items-start">
+                            <span class="inline-block w-6 h-6 mr-2">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            Fragmented health records and services.
+                        </li>
+                        <li class="flex items-start">
+                            <span class="inline-block w-6 h-6 mr-2">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            Lack of access to specialists in rural areas.
+                        </li>
+                    </ul>
+                </div>
+                <!-- Solution Image -->
+                <div class="fade-in-section delay-200">
+                    <img src="https://i.postimg.cc/4NTP5sXm/rx-now-1.png" alt="RX.NOW app on a mobile device" class="rounded-3xl shadow-xl w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact" class="py-16 md:py-24 bg-red-600 text-white text-center">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 fade-in-section delay-100">
+                Ready to Experience Seamless Healthcare?
+            </h2>
+            <p class="text-lg md:text-xl mb-8 fade-in-section delay-200">
+                Download the RX.NOW app today and take the first step towards a healthier, happier you.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 fade-in-section delay-300">
+                <a href="/ComingSoon.html" class="inline-block px-8 py-4 bg-white text-red-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition-transform duration-300 transform hover:scale-105">
+                    Download on the App Store
+                </a>
+                <a href="/ComingSoon.html" class="inline-block px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-red-600 transition-transform duration-300 transform hover:scale-105">
+                    Get it on Google Play
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <!-- Footer Column 1 -->
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">RX.NOW</h3>
+                    <p class="text-sm">Care That Clicks</p>
+                    <p class="text-sm mt-4">Building India's most accessible and complete online hospital.</p>
+                </div>
+                <!-- Footer Column 2 -->
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">Contact Us</h3>
+                    <p class="text-sm">Email: <a href="mailto:csai23031@glbitm.ac.in" class="hover:text-white transition-colors">sovereign.x.kartik@gmail.com</a></p>
+                    <p class="text-sm">Phone: <a href="tel:+916395238889" class="hover:text-white transition-colors">+91 6395238889</a></p>
+                </div>
+                <!-- Footer Column 3 -->
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">Follow Us</h3>
+                    <div class="flex justify-center md:justify-start space-x-4 mt-2">
+                        <!-- Social Media Icons (placeholders) -->
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.418 2.868 8.164 6.83 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.465-1.11-1.465-.908-.619.069-.605.069-.605 1.002.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.832.092-.644.359-1.087.653-1.336-2.22-.251-4.555-1.116-4.555-4.964 0-1.096.392-1.993 1.029-2.693-.103-.251-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.701.113 2.513.332 1.91-1.296 2.75-1.026 2.75-1.026.546 1.378.203 2.398.098 2.65.637.7 1.029 1.597 1.029 2.693 0 3.859-2.336 4.719-4.564 4.968.36.31.678.921.678 1.855 0 1.336-.012 2.419-.012 2.747 0 .268.18.583.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.523 2 12 2z" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2a2 2 0 00-2 2v16a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H8zm4 18a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8h-4v4h4v-4zM8 8H4v4h4V8zM16 16h-4v4h4v-4zM8 16H4v4h4v-4zM20 4V2a2 2 0 00-2-2H2a2 2 0 00-2 2v18a2 2 0 002 2h18a2 2 0 002-2V4h-2zm-2 16H4V4h12v16z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+                &copy; 2025 Rx.Now. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        // JavaScript to handle the fade-in animation on scroll
+        const sections = document.querySelectorAll('.fade-in-section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            section.style.animationPlayState = 'paused';
+            observer.observe(section);
+        });
+
+        // Countdown Timer Logic
+        function updateCountdown() {
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
+            // Set the target date to 48 days from now
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 48);
+
+            // Set the target date to November 14th of the current year
+            const launchDate = new Date(targetDate.getFullYear(), 10, 14);
+
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            daysEl.textContent = days.toString().padStart(2, '0');
+            hoursEl.textContent = hours.toString().padStart(2, '0');
+            minutesEl.textContent = minutes.toString().padStart(2, '0');
+            secondsEl.textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Run the countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Initial call to prevent a one-second delay
+        updateCountdown();
+
+        // Slider Navigation Logic
+        const slider = document.getElementById('slider-content');
+        const prevArrow = document.getElementById('prev-arrow');
+        const nextArrow = document.getElementById('next-arrow');
+
+        function updateArrowVisibility() {
+            // Hide the previous arrow at the beginning
+            if (slider.scrollLeft === 0) {
+                prevArrow.style.opacity = '0';
+                prevArrow.style.pointerEvents = 'none';
+            } else {
+                prevArrow.style.opacity = '1';
+                prevArrow.style.pointerEvents = 'auto';
+            }
+            // Hide the next arrow at the end
+            if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+                nextArrow.style.opacity = '0';
+                nextArrow.style.pointerEvents = 'none';
+            } else {
+                nextArrow.style.opacity = '1';
+                nextArrow.style.pointerEvents = 'auto';
+            }
+        }
+
+        prevArrow.addEventListener('click', () => {
+            const itemWidth = document.querySelector('.slider-item').offsetWidth + 32; // Item width + gap
+            slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+            setTimeout(updateArrowVisibility, 500); // Delay to allow scroll animation to finish
+        });
+
+        nextArrow.addEventListener('click', () => {
+            const itemWidth = document.querySelector('.slider-item').offsetWidth + 32; // Item width + gap
+            slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
+            setTimeout(updateArrowVisibility, 500); // Delay to allow scroll animation to finish
+        });
+
+        // Update arrow visibility on initial load and on scroll
+        window.addEventListener('load', updateArrowVisibility);
+        slider.addEventListener('scroll', updateArrowVisibility);
+    </script>
+</body>
+</html>
