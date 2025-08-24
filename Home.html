@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RX.NOW - Care That Clicks</title>
     <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/NGHcYCcR/2.png">    
-    <!-- Tailwind CSS for utility-first styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -156,50 +155,42 @@
 </head>
 <body class="bg-white">
 
-    <!-- Header / Navigation Bar -->
     <header class="bg-white py-4 px-6 md:px-12" style="box-shadow: 1px 3px 20px rgb(253, 64, 64); width:90%; margin:0 auto; margin-top:40px; border-radius:0px; border-top-left-radius:50px; border-top-right-radius:50px;  ">
         <nav class="container mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-2" style="margin: 0 auto;">
-                <!-- RX.NOW Logo with a fallback image -->
                 <img src="https://i.postimg.cc/NGHcYCcR/2.png" alt="RX.NOW Logo" class="h-10 rounded-lg">
                 <span class="text-xl font-bold text-gray-800">Rx.Now</span>
             </div>
         </nav>
     </header>
 
-    <!-- Countdown Timer Section -->
-    <section class="bg-red-600 py-6 px-4 md:px-12 text-center text-white" style="width: 90%; margin: 0 auto; border-bottom-left-radius:50px; border-bottom-right-radius:50px;  margin-bottom: 1%; box-shadow: 1px 3px 20px rgb(0, 0, 0); ">
-        <div class="container mx-auto">
-            <h3 class="text-xl md:text-2xl font-semibold mb-4">Launching on ...</h3>
-            <div class="flex justify-center items-center space-x-4 md:space-x-8">
-                <!-- Days Countdown -->
-                <div class="flex flex-col items-center">
-                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="days">00</div>
-                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Days</span>
-                </div>
-                <div class="text-3xl md:text-4xl lg:text-5xl font-bold">:</div>
-                <!-- Hours Countdown -->
-                <div class="flex flex-col items-center">
-                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="hours">00</div>
-                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Hours</span>
-                </div>
-                <div class="text-3xl md:text-4xl lg:text-5xl font-bold">:</div>
-                <!-- Minutes Countdown -->
-                <div class="flex flex-col items-center">
-                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="minutes">00</div>
-                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Minutes</span>
-                </div>
-                <div class="text-3xl md:text-4xl lg:text-5xl font-bold">:</div>
-                <!-- Seconds Countdown -->
-                <div class="flex flex-col items-center">
-                    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-1" id="seconds">00</div>
-                    <span class="text-xs md:text-sm uppercase tracking-wide opacity-80">Seconds</span>
-                </div>
+    <section class="bg-red-600 py-6 px-4 md:px-12 text-center text-white" style="width: 90%; margin: 0 auto; border-bottom-left-radius:50px; border-bottom-right-radius:50px; margin-bottom: 1%; box-shadow: 1px 3px 20px rgb(0, 0, 0);">
+    <div class="container mx-auto">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Launching on ...</h3>
+        <div class="flex justify-center items-center gap-2">
+            <div class="flex flex-col items-center">
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-1" id="days">00</div>
+                <span class="text-xs uppercase tracking-wide opacity-80">Days</span>
+            </div>
+            <div class="text-2xl sm:text-3xl lg:text-4xl font-bold">:</div>
+            <div class="flex flex-col items-center">
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-1" id="hours">00</div>
+                <span class="text-xs uppercase tracking-wide opacity-80">Hours</span>
+            </div>
+            <div class="text-2xl sm:text-3xl lg:text-4xl font-bold">:</div>
+            <div class="flex flex-col items-center">
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-1" id="minutes">00</div>
+                <span class="text-xs uppercase tracking-wide opacity-80">Minutes</span>
+            </div>
+            <div class="text-2xl sm:text-3xl lg:text-4xl font-bold">:</div>
+            <div class="flex flex-col items-center">
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-1" id="seconds">00</div>
+                <span class="text-xs uppercase tracking-wide opacity-80">Seconds</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Hero Section -->
     <main class="min-h-screen flex items-center justify-center text-center bg-white-50 overflow-hidden relative">
         <div class="container mx-auto px-6 py-12 md:py-24 max-w-4xl">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight fade-in-section delay-100">
@@ -214,58 +205,50 @@
                 </a>
             </div>
         </div>
-        <!-- Simple animated background circles -->
         <div class="absolute inset-0 z-0">
             <div class="absolute w-64 h-64 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse top-1/4 left-1/4"></div>
             <div class="absolute w-64 h-64 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-500 bottom-1/4 right-1/4"></div>
         </div>
     </main>
     
-    <!-- Slider Section with Images -->
     <section class="py-16 md:py-24 bg-white relative">
         <div class="container mx-auto px-6 max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8 fade-in-section delay-100">
                 A Seamless Experience
             </h2>
             <div class="relative">
-                <div class="flex space-x-8 px-4 overflow-x-auto slider-container py-4" id="slider-content">
-                    <!-- Slider Card 1 -->
+                <div class="flex flex-nowrap space-x-8 px-4 overflow-x-auto slider-container py-4" id="slider-content">
                     <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-200 slider-item flex-shrink-0 w-80">
                         <img src="https://i.postimg.cc/DzRwpy9g/Untitled-design-2.png" alt="AI Assistant" class="rounded-2xl mb-4 w-full h-auto">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">AI-Powered Assistant</h3>
                         <p class="text-gray-600">Our intelligent bot helps with documentation and provides instant guidance.</p>
                     </div>
-                    <!-- Slider Card 2 -->
                     <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-300 slider-item flex-shrink-0 w-80">
                         <img src="https://i.postimg.cc/ZqQWkLd6/Untitled-design-1.png" alt="Online Consultations" class="rounded-2xl mb-4 w-full h-auto">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Online Consultations</h3>
                         <p class="text-gray-600">Connect with licensed doctors 24/7 via video, audio, or chat from anywhere.</p>
                     </div>
-                    <!-- Slider Card 3 -->
                     <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-400 slider-item flex-shrink-0 w-80">
                         <img src="https://i.postimg.cc/QtrrW9LR/Untitled-design-3.png" alt="Medicine Delivery" class="rounded-2xl mb-4 w-full h-auto">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Doorstep Medicine Delivery</h3>
                         <p class="text-gray-600">Receive digital prescriptions and have your medicines delivered to your home.</p>
                     </div>
-                    <!-- Slider Card 4 -->
                     <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border-2 border-red-100 fade-in-section delay-500 slider-item flex-shrink-0 w-80">
                         <img src="https://i.postimg.cc/05nqbyVB/Untitled-design-4.png" alt="Health Records" class="rounded-2xl mb-4 w-full h-auto">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Digital Health Records</h3>
                         <p class="text-gray-600">Access and manage all your medical history and reports securely in one place.</p>
                     </div>
                 </div>
-                <!-- Navigation Arrows -->
-                <button id="prev-arrow" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10 hidden md:block">
+                <button id="prev-arrow" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10 block">
                     <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 </button>
-                <button id="next-arrow" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10 hidden md:block">
+                <button id="next-arrow" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10 block">
                     <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-6 max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12 fade-in-section delay-100">
@@ -273,50 +256,40 @@
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Service Card 1: Consult Doctors -->
                 <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-200 hover:scale-105 transition-transform duration-300">
                     <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-                        <!-- Inline SVG for Doctor Icon -->
                         <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 100 5.292M12 14v4M12 21h-2M12 10v4M12 21h2m-6-10H6M6 14h2M18 10h-2M18 14h2"></path></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Consult Doctors 24/7</h3>
                     <p class="text-gray-600">Get instant video, audio, or chat consultations with licensed doctors, anytime, anywhere.</p>
                 </div>
 
-                <!-- Service Card 2: Lab Tests -->
                 <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-300 hover:scale-105 transition-transform duration-300">
                     <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-                        <!-- Inline SVG for Lab Icon -->
                         <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9v2m0 4v2m0-6V5"></path></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Book Lab Tests</h3>
                     <p class="text-gray-600">Schedule lab tests with convenient home sample collection and receive digital reports.</p>
                 </div>
 
-                <!-- Service Card 3: Medicine Delivery -->
                 <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-400 hover:scale-105 transition-transform duration-300">
                     <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-                        <!-- Inline SVG for Medicine Icon -->
                         <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Order Medicines</h3>
                     <p class="text-gray-600">Get your digital prescriptions filled and medicines delivered right to your doorstep.</p>
                 </div>
 
-                <!-- Service Card 4: Health Records -->
                 <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-500 hover:scale-105 transition-transform duration-300">
                     <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-                        <!-- Inline SVG for Records Icon -->
                         <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5h-2m-2-5v-4m-2-4h6"></path></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Digital Health Records</h3>
                     <p class="text-gray-600">Access your complete medical history and reports securely, anytime, anywhere.</p>
                 </div>
 
-                <!-- Service Card 5: AI Insights -->
                 <div class="bg-gray-50 p-6 rounded-3xl shadow-lg border border-red-100 fade-in-section delay-600 hover:scale-105 transition-transform duration-300">
                     <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-                        <!-- Inline SVG for AI Icon -->
                         <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20v-6a2 2 0 012-2h2a2 2 0 012 2v6m0-6h3a2 2 0 002-2V7a2 2 0 00-2-2h-3V3m0 0a2 2 0 00-2-2h-2a2 2 0 00-2 2v2m0 0H7a2 2 0 00-2 2v10a2 2 0 002 2h3"></path></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">AI-Powered Insights</h3>
@@ -327,11 +300,9 @@
         </div>
     </section>
 
-    <!-- Problem & Solution Section -->
     <section class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Problem Description -->
                 <div class="fade-in-section delay-100">
                     <span class="inline-block bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase">The Problem</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-snug">
@@ -361,7 +332,6 @@
                         </li>
                     </ul>
                 </div>
-                <!-- Solution Image -->
                 <div class="fade-in-section delay-200">
                     <img src="https://i.postimg.cc/4NTP5sXm/rx-now-1.png" alt="RX.NOW app on a mobile device" class="rounded-3xl shadow-xl w-full h-auto">
                 </div>
@@ -369,7 +339,6 @@
         </div>
     </section>
 
-    <!-- Call to Action Section -->
     <section id="contact" class="py-16 md:py-24 bg-red-600 text-white text-center">
         <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 fade-in-section delay-100">
@@ -389,27 +358,22 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-gray-300 py-12">
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-                <!-- Footer Column 1 -->
                 <div>
                     <h3 class="text-lg font-bold text-white mb-2">RX.NOW</h3>
                     <p class="text-sm">Care That Clicks</p>
                     <p class="text-sm mt-4">Building India's most accessible and complete online hospital.</p>
                 </div>
-                <!-- Footer Column 2 -->
                 <div>
                     <h3 class="text-lg font-bold text-white mb-2">Contact Us</h3>
                     <p class="text-sm">Email: <a href="mailto:csai23031@glbitm.ac.in" class="hover:text-white transition-colors">sovereign.x.kartik@gmail.com</a></p>
                     <p class="text-sm">Phone: <a href="tel:+916395238889" class="hover:text-white transition-colors">+91 6395238889</a></p>
                 </div>
-                <!-- Footer Column 3 -->
                 <div>
                     <h3 class="text-lg font-bold text-white mb-2">Follow Us</h3>
                     <div class="flex justify-center md:justify-start space-x-4 mt-2">
-                        <!-- Social Media Icons (placeholders) -->
                         <a href="#" class="text-gray-400 hover:text-white transition-colors">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.418 2.868 8.164 6.83 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.465-1.11-1.465-.908-.619.069-.605.069-.605 1.002.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.832.092-.644.359-1.087.653-1.336-2.22-.251-4.555-1.116-4.555-4.964 0-1.096.392-1.993 1.029-2.693-.103-.251-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.701.113 2.513.332 1.91-1.296 2.75-1.026 2.75-1.026.546 1.378.203 2.398.098 2.65.637.7 1.029 1.597 1.029 2.693 0 3.859-2.336 4.719-4.564 4.968.36.31.678.921.678 1.855 0 1.336-.012 2.419-.012 2.747 0 .268.18.583.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.523 2 12 2z" clip-rule="evenodd"></path></svg>
                         </a>
